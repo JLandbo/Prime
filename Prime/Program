@@ -1,0 +1,75 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+
+namespace Prime
+{
+    class Program
+    {
+        public static List<long> list = new List<long>() { 2, 3};
+
+        static void Main(string[] args)
+        {
+            RunStartup(5000, 1, false);
+        }
+
+        public static void RunStartup(long amount, int take, bool echo)
+        {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+            FindPrimes(amount);
+            watch.Stop();
+
+            foreach (var p in (list.OrderByDescending(x => x).Take(take)))
+            {
+                Console.WriteLine(p);
+            }
+
+            if (echo) { 
+                Console.WriteLine("Took: " + watch.ElapsedMilliseconds + " milliseonds");
+            }
+
+            Console.ReadKey();
+        }
+
+        public static void FindPrimes(long num)
+        {
+            var i = 5;
+            while(true)
+            {
+                if (TestMe(i))
+                {
+                    list.Add(i);
+                }
+                i = i + 2;
+                if (TestMe(i))
+                {
+                    list.Add(i);
+                }
+                i = i + 4;
+                if (list.LongCount() == num)
+                {
+                    break;
+                }
+            }
+        }
+
+        public static bool TestMe(long i)
+        {
+            
+            foreach (var l in list)
+            {
+                if (l * l > i)
+                {
+                    return true;
+                }
+                if (i % l == 0)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+    }
+}
