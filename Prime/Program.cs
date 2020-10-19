@@ -24,7 +24,7 @@ namespace Prime
                 Console.WriteLine(SieveAmo78498[SieveAmo78498.Length-1]);
                 */
 
-                //  OPG 1
+                //  OPG 1 - Hej
                 //  Nuværende løsning tager: 0.000139 ms
                 //  Find all multiples of 3 and 5 under 1000 = 233168
                 MultiplesOfThreeAndFive.Calc();
